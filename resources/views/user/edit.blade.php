@@ -1,13 +1,11 @@
 @extends('partials.master')
 
-
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
 
-                    @include('partials.flash')
 
                     <div class="card-header">{{ isset($user) ? 'Edit User' : 'Create User' }}</div>
 
@@ -24,7 +22,7 @@
                                 <div class="form-group">
                                     <label class="control-label" for="name">Name: </label>
                                     <input class="form-control @error('name') is-invalid @enderror" type="name"
-                                        id="name" name="name" placeholder="name address" autofocus
+                                        id="name" name="name" placeholder="full name" autofocus
                                         value="{{ old('name') }}">
 
                                     @error('name')

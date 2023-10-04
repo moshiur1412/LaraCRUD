@@ -26,7 +26,7 @@ class UserRequest extends FormRequest
             case 'POST': {
                     return [
                         'name' => 'required',
-                        'email' => 'required|email'
+                        'email' => 'required|email|unique:users,email'
                     ];
                 }
             case 'PUT': {

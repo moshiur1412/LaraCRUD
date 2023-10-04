@@ -1,39 +1,4 @@
-@if (session('info'))
-    @foreach (session('info') as $title => $message)
-        <div class="alert alert-info alert-dismissible">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            <h4><i class="icon fa fa-info"></i> {{ $title }}</h4>
-            {{ $message }}
-        </div>
-    @endforeach
-@endif
-@if (session('success'))
-    @foreach (session('success') as $title => $message)
-        <div class="alert alert-success alert-dismissible">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            <h4><i class="icon fa fa-check"></i> {{ $title }}</h4>
-            {{ $message }}
-        </div>
-    @endforeach
-@endif
-@if (session('error'))
-    @foreach (session('error') as $title => $message)
-        <div class="alert alert-danger alert-dismissible">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            <h4><i class="icon fa fa-ban"></i> {{ $title }}</h4>
-            {{ $message }}
-        </div>
-    @endforeach
-@endif
-@if (session('warning'))
-    @foreach (session('warning') as $title => $message)
-        <div class="alert alert-warning alert-dismissible">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            <h4><i class="icon fa fa-warning"></i> {{ $title }}</h4>
-            {{ $message }}
-        </div>
-    @endforeach
-@endif
+
 @if ($errors->any())
     <div class="alert alert-danger">
         <ul>
@@ -43,3 +8,38 @@
         </ul>
     </div>
 @endif
+
+@php
+    $errors = Session::get('error');
+    $messages = Session::get('success');
+    $info = Session::get('info');
+    $warnings = Session::get('warning');
+@endphp
+@if ($errors) @foreach($errors as $key => $value)
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <strong>Error!</strong> {{ $value }}
+    </div>
+@endforeach @endif
+ 
+@if ($messages) @foreach($messages as $key => $value)
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <strong>Success!</strong> {{ $value }}
+    </div>
+@endforeach @endif
+ 
+@if ($info) @foreach($info as $key => $value)
+<div class="alert alert-success alert-info fade show" role="alert">
+<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <strong>Info!</strong> {{ $value }}
+    </div>
+@endforeach @endif
+ 
+@if ($warnings) @foreach($warnings as $key => $value)
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <strong>Warning!</strong> {{ $value }}
+    </div>
+@endforeach @endif
+

@@ -1,11 +1,10 @@
 @extends('partials.master')
+
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    @include('partials.flash')
-
                     <div class="card-header">User List</div>
                     <div>
                         <a href="{{ route('user.create') }}" style="float:right; margin-right:10px;">Create User</a>
