@@ -6,6 +6,8 @@ use App\Repositories\RepositoryInterface;
 use App\Repositories\UserRepository;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
+use App\Breadcrumbs\Breadcrumbs;
+use Illuminate\Http\Request;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -24,6 +26,10 @@ class AppServiceProvider extends ServiceProvider
     {
         // for bootstrap used --> 
         Paginator::useBootstrap();
+        Request::macro('breadcrumbs', function(){
+
+            return new Breadcrumbs($this);
+        });
 
     }
 }

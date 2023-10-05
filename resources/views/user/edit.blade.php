@@ -1,19 +1,20 @@
 @extends('partials.master')
 
-@section('title')
-    {{ $pageTitle }}
-@endsection
+@section('title', $pageTitle)
 
 @section('content')
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-12 mx-auto">
-                <div class="card">
-
-                <div class="card-header">
-                    <h2 class="mb-0">{{ $pageTitle }}</h2>
+<div class="container-fluid">
+    <div class="col-md-12 mx-auto">
+        <div class="card">
+            <div class="card-header">
+                <div class="d-flex justify-content-between">
+                    <h2>{{ $pageTitle }}</h2>
                     <small class="text-muted">{{ $subTitle }}</small>
                 </div>
+                <!-- Dynamic Breadcrumbs -->
+                @include('partials.breadcrumb')
+            </div>
+
 
                     <div class="card-body">
                         <form id="itemFrom" role="form" method="POST"
