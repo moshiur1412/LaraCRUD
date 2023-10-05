@@ -9,6 +9,12 @@ trait FlashMessages
     protected $errorMessages = [];
     protected $infoMessages = [];
 
+    /**
+     * Set a flash message of the specified type.
+     *
+     * @param string|array $message
+     * @param string $type
+     */
     protected function setFlashMessage($message, $type)
     {
         $model = 'infoMessages';
@@ -36,6 +42,11 @@ trait FlashMessages
         }
     }
 
+    /**
+     * Get all flash messages organized by type.
+     *
+     * @return array
+     */
     protected function getFlashMessages()
     {
         return [
@@ -46,7 +57,9 @@ trait FlashMessages
         ];
     }
 
-
+    /**
+     * Show flash messages in the session for all types.
+     */
     protected function showFlashMessages()
     {
         session()->flash('success', $this->successMessages);
