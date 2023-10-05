@@ -2,6 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\NoNumber;
+use App\Rules\NoSymbol;
+use App\Rules\Uppercase;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Log;
 
@@ -23,29 +26,36 @@ class UserRequest extends FormRequest
     public function rules(): array
     {
         switch ($this->method()) {
-            case 'POST': {
-                    return [
-                        'name' => 'required',
-                        'email' => 'required|email|unique:users,email'
-                    ];
-                }
-            case 'PUT': {
-                    return [
-                        'name' => 'required',
-                        'email' => 'required|unique:users,email,' . $this->user . ',id|min:12|max:255',
-
-                    ];
-                }
+            case 'POST':
+                return [
+                    'name' => ['required','min:5','max:200', new Uppercase, new NoSymbol,New NoNumber],
+                    'email' => 'required|email|unique:users,email',
+                ];
+            case 'PUT':
+                return [
+                    'name' => ['required','min:5','max:200', new Uppercase, new NoSymbol,New NoNumber],
+                    'email' => "required|email|unique:users,email,{$this->id}",
+                ];
             default:
-                break;
+                return [];
         }
-
     }
-
 
     public function withValidator()
     {
-
         \Log::info('Req=App/Http/Request/UserRequest@withValidator Called');
+    }
+
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array<string, string>
+     */
+    public function messages(): array
+    {
+        return [
+            'name.required' => 'Please provide your full name.',
+            'email.required' => 'Please provide a valid email address.',
+        ];
     }
 }

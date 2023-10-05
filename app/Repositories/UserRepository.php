@@ -11,7 +11,7 @@ class UserRepository implements RepositoryInterface
 
     public function getAllUsers()
     {
-        return User::paginate(10);
+        return User::OrderByDesc('created_at')->paginate(100);
     }
 
     public function getUserById($id)

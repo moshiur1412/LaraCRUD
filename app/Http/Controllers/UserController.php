@@ -37,18 +37,24 @@ class UserController extends BaseController
 
     public function saveUser(UserRequest $request, $id = null)
     {
-        // dd('worked');
         $collection = $request->except(['_token', '_method']);
         if (!is_null($id)) {
+            // Update User -->
             $createUser = $this->user->createOrUpdate($id, $collection);
             if(!$createUser){
                 return $this->responseRedirectBack('Error occured while creating user', 'error', true, true);
             }
+            return $this->responseRedirect('user.list', 'User updated successfully', 'success');
+
         } else {
+            // Create User -->
             $this->user->createOrUpdate($id = null, $collection);
+            return $this->responseRedirect('user.list', 'User added successfully', 'success');
         }
-        // return redirect()->route('user.list');
-        return $this->responseRedirect('user.list', 'User added successfully', 'success');
+    }
+
+    public function searchUser(Request $request){
+        dd($request);
     }
 
     public function deleteUser($id)
