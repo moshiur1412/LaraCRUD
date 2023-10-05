@@ -1,12 +1,19 @@
 @extends('partials.master')
 
+@section('title')
+    {{ $pageTitle }}
+@endsection
+
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-md-12 mx-auto">
                 <div class="card">
 
-                    <div class="card-header">{{ isset($user) ? 'Edit User' : 'Create User' }}</div>
+                <div class="card-header">
+                    <h2 class="mb-0">{{ $pageTitle }}</h2>
+                    <small class="text-muted">{{ $subTitle }}</small>
+                </div>
 
                     <div class="card-body">
                         <form id="itemFrom" role="form" method="POST"

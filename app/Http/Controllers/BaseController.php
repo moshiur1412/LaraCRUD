@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Traits\FlashMessages;
+use Illuminate\Support\Facades\Log;
 
 class BaseController extends Controller
 {
@@ -42,5 +43,18 @@ class BaseController extends Controller
         $this->setFlashMessage($message, $type);
         $this->showFlashMessages();
         return redirect()->back();
+    }
+
+
+    /**
+     * Dynamic Page title
+     * 
+     * @param $title
+     * @param $subTitle
+     */
+    protected function setPageTitle($title, $subTitle)
+    {
+        Log::info("Req=BaseController@setPageTitle called");
+        view()->share(['pageTitle' => $title, 'subTitle' => $subTitle]);
     }
 }

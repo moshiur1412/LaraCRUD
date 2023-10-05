@@ -16,7 +16,7 @@
     </script>
 
 
-    <title>786, Bismillah!</title>
+    <title>786, Bismillah! - @yield('title') </title>
 </head>
 
 <body>

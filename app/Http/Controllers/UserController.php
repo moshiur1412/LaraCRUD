@@ -25,7 +25,7 @@ class UserController extends BaseController
     {
         $users = $this->user->getAllUsers();
         // return View::make('user.index', compact('users'));
-
+        $this->setPageTitle('Users', 'List of all users');
         return View::make('user.index', compact('users'));
     }
 
@@ -36,6 +36,7 @@ class UserController extends BaseController
      */
     public function createUser()
     {
+        $this->setPageTitle('User', 'Add User');
         return View::make('user.edit');
     }
 
@@ -47,6 +48,7 @@ class UserController extends BaseController
      */
     public function getUser($id)
     {
+        $this->setPageTitle('User', 'Edit User');
         $user = $this->user->getUserById($id);
         return View::make('user.edit', compact('user'));
     }
