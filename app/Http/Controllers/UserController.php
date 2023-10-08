@@ -87,6 +87,7 @@ class UserController extends BaseController
     public function searchUser(Request $request)
     {
         $users = $this->user->searchUser($request);
+        $this->setPageTitle("Users", "Search Users");
         return View::make("user.index", compact('users'));
     }
 
