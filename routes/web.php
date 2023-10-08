@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\UserController;
 
-Route::get('/users', [UserController::class, 'showUsers'])->name('user.list');
+Route::get('/user', [UserController::class, 'showUsers'])->name('user.list');
 Route::get('/user/create', [Usercontroller::class, 'createUser'])->name('user.create');
 Route::post('/user/create',[UserController::class, 'saveUser'])->name('user.store');
 Route::get('/user/edit/{id}', [UserController::class, 'getUser'])->name('user.edit');
